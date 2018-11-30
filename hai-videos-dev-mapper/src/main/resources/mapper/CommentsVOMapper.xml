@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hai.mapper.CommentsVOMapper">
+	<resultMap id="BaseResultMap" type="com.hai.pojo.vo.CommentsVO">
+		<!-- WARNING - @mbg.generated -->
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="father_comment_id" jdbcType="VARCHAR"
+			property="fatherCommentId" />
+		<result column="to_user_id" jdbcType="VARCHAR"
+			property="toUserId" />
+		<result column="video_id" jdbcType="VARCHAR" property="videoId" />
+		<result column="from_user_id" jdbcType="VARCHAR"
+			property="fromUserId" />
+		<result column="create_time" jdbcType="TIMESTAMP"
+			property="createTime" />
+		<result column="comment" jdbcType="LONGVARCHAR"
+			property="comment" />
+
+		<result column="face_image" jdbcType="VARCHAR"
+			property="faceImage" />
+		<result column="nickname" jdbcType="VARCHAR"
+			property="nickname" />
+	</resultMap>
+
+	<select id="selectCommentVOByVideoId" parameterType="String" resultMap="BaseResultMap">
+		select c.*,u.face_image,u.nickname from comments c left join users u on
+		c.from_user_id = u.id where c.video_id = #{videoId}
+	</select>
+
+</mapper>
